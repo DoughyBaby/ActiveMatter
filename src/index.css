@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0d0f12;
+    --bg-secondary: #161a20;
+    --bg-tertiary: #1c2128;
+    --border-technical: #282f3a;
+    --accent-orange: #ff6b35;
+    --accent-orange-dim: #cc5628;
+    --accent-orange-bright: #ff8a5b;
+    --text-primary: #e4e7eb;
+    --text-secondary: #8b939e;
+    --text-muted: #5c6570;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-technical);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4350;
+  }
+
+  /* Mono font for tactical data readouts */
+  .font-mono-tactical {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .tactical-border {
+    border-color: var(--border-technical);
+  }
+
+  .tactical-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-technical);
+    border-radius: 8px;
+  }
+
+  .accent-glow {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.15);
+  }
+
+  /* Subtle grid texture background */
+  .grid-texture {
+    background-image:
+      linear-gradient(rgba(40, 47, 58, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(40, 47, 58, 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 107, 53, 0.03) 10px,
+      rgba(255, 107, 53, 0.03) 20px
+    );
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.25s ease-out;
+  }
+
+  .animate-pulse-accent {
+    animation: pulseAccent 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 1000px; }
+  }
+
+  @keyframes pulseAccent {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(255, 107, 53, 0); }
+  }
+
+  @keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-scanline {
+    animation: scanline 3s linear infinite;
+  }
+}
